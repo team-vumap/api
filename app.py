@@ -1,6 +1,5 @@
 from flask import Flask
 from models.automata import Automata, Operations
-from typing import List, Tuple
 import json
 
 app = Flask(__name__)
@@ -19,7 +18,7 @@ def get_all_init_automata():
     return json.dumps(Automata().__dict__)
 
 @app.route('/automata/multiply', options=["POST"])
-def direct_multiply_automata(first_automata: List[Tuple[str, str, str]], second_automata: List[Tuple[str, str, str]]):
+def direct_multiply_automata(first_automata, second_automata):
     """
     """
     operation = Operations(Automata(first_automata), Automata(second_automata))
