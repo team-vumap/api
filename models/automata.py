@@ -9,7 +9,8 @@ class Automata:
     # alphabets: List[str]
     # transitions: List[Tuple[str, str, str]]
 
-    def __init__(self, _transitions):
+    def __init__(self, _name, _transitions):
+        self.name = _name
         self.states = list(dict.fromkeys([x[0] for x in _transitions]))
         self.alphabets = list(dict.fromkeys([x[1] for x in _transitions]))
         self.transitions = _transitions
@@ -38,5 +39,5 @@ class Operations:
                 transition_state_second = self.second_automata.transition(state[1], letter[1])
                 transition_state = (transition_state_first, transition_state_second)
                 result_transitions.append((state, letter, transition_state))
-        
-        return Automata(result_transitions)
+        result_automata_name = f'{self.first_automata.name} x {self.second_automata.name}'
+        return Automata(result_automata_name, result_transitions)

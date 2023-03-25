@@ -16,7 +16,7 @@ def get_all_init_automata():
     """
     Get all of the initial automata (we need to create these)
     """
-    return json.dumps(Automata([]).__dict__)
+    return json.dumps(Automata("E.Coli", [[0,1,1],[1,1,2],[2,1,0],[1,0,0],[2,0,1],[0,0,2]]).__dict__)
 
 @app.route('/automata/multiply', methods=["POST"])
 def direct_multiply_automata():
@@ -24,9 +24,11 @@ def direct_multiply_automata():
     Direct multiply two automata
     """
     json_data = request.get_json()
-    first_automata = json_data['first_automata']
-    second_automata = json_data['second_automata']
-    operation = Operations(Automata(first_automata), Automata(second_automata))
+    first_automata = json_data['first_automata']['transitions']
+    first_automata_name = json_data['first_automata']['name']
+    second_automata = json_data['second_automata']['transitions']
+    second_automata_name = json_data['second_automata']['name']
+    operation = Operations(Automata(first_automata_name, first_automata), Automata(second_automata_name, second_automata))
     result = operation.direct_multiplication()
     return json.dumps(result.__dict__)
 
