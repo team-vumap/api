@@ -1,4 +1,3 @@
-from operator import concat
 from itertools import product
 
 def cartesian_product(lst):
