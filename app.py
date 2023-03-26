@@ -49,5 +49,6 @@ def direct_multiply_automata():
     known_automta[result.name] = result.transitions;
     return json.dumps(result.__dict__)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# for debug purposes
+# if __name__ == '__main__':
+#     app.run(debug=True)
